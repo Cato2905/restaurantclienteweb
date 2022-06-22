@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Ordenes from './../paginas/Ordenes';
 
 const Sidebar = () => {
     return (

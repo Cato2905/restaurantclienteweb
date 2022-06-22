@@ -11,7 +11,7 @@ class Firebase {
         app.initializeApp(firebaseConfig)
 
         this.db = app.firestore();
-        // this.storage = app.storage();
+        this.storage = app.storage();
     }
 }
 
