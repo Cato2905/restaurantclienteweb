@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 
 
@@ -19,10 +20,27 @@ const NuevoPlatillo = () => {
             imagen: '',
             descripcion: '',
         },
+        validationSchema: Yup.object({
+            nombre: Yup.string()
+                .min(3, 'Los Nombres deben tener al menos 3 caracteres')
+                .required('El Nombre es obligatorio'),
+            precio: Yup.number()
+                .min(1, 'Debes agregar un número')
+                .required('El Precio es obligatorio'),
+            descripcion: Yup.string()
+                .min(10, 'La descripción debe ser más larga')
+                .required('La descripción es obligatoria'),
+
+        }),
         onSubmit: datos => {
-           console.log(datos);
+            console.log(datos);
         }
     });
+
+
+
+
+    
 
     return (
         <>
@@ -41,12 +59,20 @@ const NuevoPlatillo = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="nombre"
                                 type="text"
-                                placeholder="Nombre Platillo"
+                                placeholder="Nombre Promocion"
                                 value={formik.values.nombre}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
                         </div>
+                        {formik.touched.nombre && formik.errors.nombre ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.nombre} </p>
+                            </div>
+                        ) : null}
+
+
 
                         <div className='mb-4'>
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
@@ -61,6 +87,14 @@ const NuevoPlatillo = () => {
                                 onBlur={formik.handleBlur}
                             />
                         </div>
+                        {formik.touched.precio && formik.errors.precio ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.precio} </p>
+                            </div>
+                        ) : null}
+
+
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">Imagen</label>
@@ -71,6 +105,8 @@ const NuevoPlatillo = () => {
 
                             />
                         </div>
+
+
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción</label>
@@ -83,6 +119,15 @@ const NuevoPlatillo = () => {
                                 onBlur={formik.handleBlur}
                             ></textarea>
                         </div>
+                        {formik.touched.descripcion && formik.errors.descripcion ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.descripcion} </p>
+                            </div>
+                        ) : null}
+
+
+
 
                         <input
                             type="submit"
