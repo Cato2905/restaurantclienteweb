@@ -1,12 +1,12 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCAQissrlcpYn5bMFqHoWIMLc4FwFUyC5c",
-    authDomain: "restaurant-6529e.firebaseapp.com",
-    projectId: "restaurant-6529e",
-    storageBucket: "restaurant-6529e.appspot.com",
-    messagingSenderId: "159218763497",
-    appId: "1:159218763497:web:b7f0d461c9ab25442e9278",
-    measurementId: "G-XFWDHQJEQ2"
+    apiKey: "AIzaSyDSJ_Qe2F368HAyR0JxOqjfujjGG2Sf2eQ",
+    authDomain: "restaurant-c3dcc.firebaseapp.com",
+    projectId: "restaurant-c3dcc",
+    storageBucket: "restaurant-c3dcc.appspot.com",
+    messagingSenderId: "27227410484",
+    appId: "1:27227410484:web:4c09b8fb52665d71e8ba61",
+    measurementId: "G-RSM2SJVP3M"
 };
 
 export default firebaseConfig;

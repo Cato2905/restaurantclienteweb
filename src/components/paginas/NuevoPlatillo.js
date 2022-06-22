@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+import { FirebaseContext } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const NuevoPlatillo = () => {
 
 
+    
 
 
+    // Context con las operaciones de firebase
+    const { firebase } = useContext(FirebaseContext);
 
+    console.log(firebase);
+
+    // Hook para redireccionar
+    const navigate = useNavigate();
 
     // validación y leer los datos del formulario
     const formik = useFormik({
         initialValues: {
             nombre: '',
             precio: '',
-            categoria: '',
             imagen: '',
             descripcion: '',
         },
@@ -28,19 +36,29 @@ const NuevoPlatillo = () => {
                 .min(1, 'Debes agregar un número')
                 .required('El Precio es obligatorio'),
             descripcion: Yup.string()
-                .min(10, 'La descripción debe ser más larga')
+                .min(1, 'La descripción debe ser más larga')
                 .required('La descripción es obligatoria'),
 
         }),
-        onSubmit: datos => {
-            console.log(datos);
+        onSubmit: platillo => {
+            try {
+                platillo.existencia = true;
+
+                firebase.db.collection('productos').add(platillo);
+
+                console.log(platillo);
+                // Redireccionar
+                navigate('/menu');
+            } catch (error) {
+                console.log(error);
+            }
         }
     });
 
 
 
 
-    
+
 
     return (
         <>
@@ -131,7 +149,7 @@ const NuevoPlatillo = () => {
 
                         <input
                             type="submit"
-                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                            className="bg-gray-800 hover:bg-gray-600 w-full mt-5 p-2 text-white uppercase font-bold"
                             value="Agregar Platillo"
                         />
 
