@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Ordenes from './../paginas/Ordenes';
 
 const Sidebar = () => {
-    return (  
+    return (
         <div className='md:w-1/4 xl:w:1/5 bg-gray-800'>
             <div className='p-6'>
                 <p className='uppercase text-white text-2xl tracking-wide text-center font-bold'>Okasaki</p>
@@ -18,5 +18,5 @@ const Sidebar = () => {
         </div>
     );
 }
- 
+
 export default Sidebar;

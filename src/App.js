@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes} from 'react-router'
+import { Route, Routes } from 'react-router'
 
 
 import Ordenes from './components/paginas/Ordenes';
@@ -16,9 +16,9 @@ function App() {
 
       <div className="md:w-2/5 xl:w-4/5 p-6">
         <Routes>
-            <Route path="/" element={<Ordenes />  } />
-            <Route path="/menu" element={<Menu />  } />
-            <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
+          <Route path="/" element={<Ordenes />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/nuevo-platillo" element={<NuevoPlatillo />} />
         </Routes>
       </div>
     </div>
