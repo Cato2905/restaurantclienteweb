@@ -47,7 +47,7 @@ const NuevoPlatillo = () => {
         onSubmit: platillo => {
             try {
                 platillo.existencia = true;
-
+                platillo.imagen = urlimagen;
                 firebase.db.collection('productos').add(platillo);
 
                 console.log(platillo);
