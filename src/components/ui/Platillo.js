@@ -1,6 +1,9 @@
 import React, { useContext, useRef } from 'react';
 import { FirebaseContext } from '../../firebase';
 
+
+
+
 const Platillo = ({ platillo }) => {
 
     // Existencia ref para acceder al valor directamente
