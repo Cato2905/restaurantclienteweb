@@ -1,7 +1,7 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { FirebaseContext } from '../../firebase';
 
-const Platillo = ({platillo}) => {
+const Platillo = ({ platillo }) => {
 
     // Existencia ref para acceder al valor directamente
     const existenciaRef = useRef(platillo.existencia);
@@ -9,7 +9,7 @@ const Platillo = ({platillo}) => {
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
 
-    const { id,  nombre, imagen, existencia,  precio, descripcion } = platillo;
+    const { id, nombre, imagen, existencia, precio, descripcion } = platillo;
 
 
     // modificar el estado del platillo en firebase
@@ -27,7 +27,9 @@ const Platillo = ({platillo}) => {
         }
     }
 
-    return ( 
+    
+
+    return (
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
@@ -38,15 +40,30 @@ const Platillo = ({platillo}) => {
                             <label className="block mt-5 sm:w-2/4">
                                 <span className="block text-gray-800 mb-2 " >Existencia</span>
 
-                                <select 
+                                <select
                                     className="bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
                                     value={existencia}
                                     ref={existenciaRef}
-                                    onChange={ () => actualizarDisponibilidad() }
+                                    onChange={() => actualizarDisponibilidad()}
                                 >
                                     <option value="true">Disponible</option>
                                     <option value="false">No Disponible</option>
                                 </select>
+
+
+
+
+                                <input
+                                    type="submit"
+                                    className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
+                                    value="Eliminar promoción"
+                                />
+
+
+
+
+
+
                             </label>
                         </div>
                     </div>
@@ -56,13 +73,13 @@ const Platillo = ({platillo}) => {
                         <p className="text-gray-600 mb-4">{descripcion} </p>
 
                         <p className="text-gray-600 mb-4">Precio: {''}
-                            <span className="text-gray-700 font-bold">$ {precio}</span> 
+                            <span className="text-gray-700 font-bold">$ {precio}</span>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Platillo;
