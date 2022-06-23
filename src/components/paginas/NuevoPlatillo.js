@@ -48,9 +48,11 @@ const NuevoPlatillo = () => {
             try {
                 platillo.existencia = true;
                 platillo.imagen = urlimagen;
+                
                 firebase.db.collection('productos').add(platillo);
 
                 console.log(platillo);
+                
                 // Redireccionar
                 navigate('/menu');
             } catch (error) {
