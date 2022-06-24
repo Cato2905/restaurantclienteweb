@@ -6,6 +6,8 @@ import { FirebaseContext } from '../../firebase';
 
 const Platillo = ({ platillo }) => {
 
+
+
     // Existencia ref para acceder al valor directamente
     const existenciaRef = useRef(platillo.existencia);
 
@@ -20,17 +22,24 @@ const Platillo = ({ platillo }) => {
         const existencia = (existenciaRef.current.value === "true");
 
         try {
-            firebase.db.collection('productos')
-                .doc(id)
-                .update({
-                    existencia
-                });
+            firebase.db.collection('productos').doc(id).update({ existencia });
         } catch (error) {
             console.log(error);
         }
     }
 
-    
+    const eliminarPlatillo = () => {
+        alert('You clicked me!',imagen);
+        try {
+            // firebase.db.collection('productos').doc(id).delete();
+            firebase.storage.collection('productos').doc(imagen.id).delete();
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     return (
         <div className="w-full px-3 mb-4">
@@ -44,7 +53,7 @@ const Platillo = ({ platillo }) => {
                                 <span className="block text-gray-800 mb-2 " >Existencia</span>
 
                                 <select
-                                    className="bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
+                                    className="bg-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
                                     value={existencia}
                                     ref={existenciaRef}
                                     onChange={() => actualizarDisponibilidad()}
@@ -53,18 +62,11 @@ const Platillo = ({ platillo }) => {
                                     <option value="false">No Disponible</option>
                                 </select>
 
-
-
-
-                                <input
-                                    type="submit"
+                                <button
+                                    onClick={eliminarPlatillo}
                                     className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
-                                    value="Eliminar promoción"
-                                />
 
-
-
-
+                                >Eliminar</button>
 
 
                             </label>
