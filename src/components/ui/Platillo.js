@@ -1,5 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { FirebaseContext } from '../../firebase';
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import Swal from 'sweetalert2'
 
 
 
@@ -28,17 +30,45 @@ const Platillo = ({ platillo }) => {
         }
     }
 
+    const storage = getStorage();
+    const desertRef = ref(storage, imagen);
+
+
     const eliminarPlatillo = () => {
-        alert('You clicked me!',imagen);
+        //alert('imagen');
         try {
-            // firebase.db.collection('productos').doc(id).delete();
-            firebase.storage.collection('productos').doc(imagen.id).delete();
-            
+            firebase.db.collection('productos').doc(id).delete();
+            //firebase.storage.child('productos').doc(imagen).delete();
+            deleteObject(desertRef)
         } catch (error) {
             console.log(error);
         }
     }
 
+
+    const mostrarAlerta = () => {
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, bórralo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '¡Eliminado!',
+                    'Su platillo ha sido eliminado.',
+                    'success'
+
+                )
+                eliminarPlatillo()
+            }
+        })
+
+    }
 
 
     return (
@@ -63,7 +93,7 @@ const Platillo = ({ platillo }) => {
                                 </select>
 
                                 <button
-                                    onClick={eliminarPlatillo}
+                                    onClick={mostrarAlerta}
                                     className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
 
                                 >Eliminar</button>
