@@ -33,6 +33,9 @@ const Menu = () => {
         guadarPlatillos(platillos);
     }
 
+
+    
+
     return (
         <>
             <h1 className='text-3xl font-light mb4 mb-5'>Menu</h1>
@@ -48,6 +51,14 @@ const Menu = () => {
                 />
             ))}
         </>
+
+
+
+
+
+
+
+
     );
 }
 
