@@ -12,13 +12,20 @@ const Ordenes = () => {
 
 
     const consoleLog = () => {
-        console.log(promo)
+        console.log(tiempoEntrega)
 
 
     }
 
+    const [tiempoEntrega, setTiempoEntrega] = useState(0);
 
+    const definirTiempo = (id) => {
 
+        firebase.db.collection('ordenes').doc(id).update({ tiempoEntrega:tiempoEntrega }).then(()=> {
+            setTiempoEntrega(0)
+        });
+        // console.log(id)
+    }
 
 
     // consultar la base de datos al cargar
@@ -104,13 +111,29 @@ const Ordenes = () => {
 
 
 
+                                <div className="mb-4">
+                                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                                        Tiempo de Entrega
+                                    </label>
 
+                                    <input
+                                        type="number"
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  "
+                                        min="1"
+                                        max="50"
+                                        placeholder="20"
+                                        value={item.tiempoEntrega}
+                                        onChange={e => setTiempoEntrega(parseInt(e.target.value))}
+                                    />
 
-
-
-
-
-
+                                    <button
+                                        onClick={() => definirTiempo(item.id)}
+                                        type="submit"
+                                        className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                                    >
+                                        Definir Tiempo
+                                    </button>
+                                </div>
 
                                 <button
                                     onClick={() => consoleLog()}
