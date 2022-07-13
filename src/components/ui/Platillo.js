@@ -10,8 +10,6 @@ const Platillo = ({ platillo }) => {
 
 
 
-    // Existencia ref para acceder al valor directamente
-    const existenciaRef = useRef(platillo.existencia);
 
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
@@ -19,16 +17,7 @@ const Platillo = ({ platillo }) => {
     const { id, nombre, imagen, existencia, precio, descripcion } = platillo;
 
 
-    // modificar el estado del platillo en firebase
-    const actualizarDisponibilidad = () => {
-        const existencia = (existenciaRef.current.value === "true");
 
-        try {
-            firebase.db.collection('productos').doc(id).update({ existencia });
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const storage = getStorage();
     const desertRef = ref(storage, imagen);
@@ -71,6 +60,34 @@ const Platillo = ({ platillo }) => {
     }
 
 
+
+
+    // Existencia ref para acceder al valor directamente
+    const existenciaRef = useRef(platillo.existencia);
+
+    // modificar el estado del platillo en firebase
+    const actualizarDisponibilidad = () => {
+        const existencia = (existenciaRef.current.value === "true");
+
+        try {
+            firebase.db.collection('productos').doc(id).update({ existencia });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    const actualizarDisponibilidadFalse = () => {
+        const existencia = (existenciaRef.current.value === "false");
+
+        try {
+            firebase.db.collection('productos').doc(id).update({ existencia });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <div className="w-full px-3 mb-4 ">
             <div className="p-5 shadow-md bg-white ">
@@ -80,10 +97,10 @@ const Platillo = ({ platillo }) => {
 
                         <div className="sm:flex sm:-mx-2 pl-2">
                             <label className="block mt-5 sm:w-2/4">
-                                <span className="block text-gray-800 mb-2 " >Existencia</span>
+                                <span className="block text-gray-800 mb-2 text-center" >Existencia</span>
 
                                 <select
-                                    className="bg-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
+                                    className="bg-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-2xl "
                                     value={existencia}
                                     ref={existenciaRef}
                                     onChange={() => actualizarDisponibilidad()}
@@ -92,11 +109,20 @@ const Platillo = ({ platillo }) => {
                                     <option value="false">No Disponible</option>
                                 </select>
 
+
+                                <button
+                                    onClick={actualizarDisponibilidadFalse}
+                                    className="bg-green-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline my-5 text-3xl"
+
+                                >CAMBIAR EXISTENCIA </button>
+
+
                                 <button
                                     onClick={mostrarAlerta}
-                                    className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
+                                    className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mb-4 text-2xl"
 
                                 >Eliminar</button>
+
 
 
                             </label>

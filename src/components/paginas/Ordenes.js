@@ -9,11 +9,11 @@ const Ordenes = () => {
     const { firebase } = useContext(FirebaseContext);
 
 
-    const consoleLog = () => {
-        console.log(tiempoEntrega)
+    // const consoleLog = () => {
+    //     console.log(tiempoEntrega)
 
 
-    }
+    // }
 
 
 
@@ -59,7 +59,10 @@ const Ordenes = () => {
 
 
     return (
+
         <div>
+            <h1 className='text-3xl font-light mb4 mb-5'>Pedidos</h1>
+
             {
                 promo.map((item, index) => [
 
@@ -123,18 +126,42 @@ const Ordenes = () => {
                                             Tiempo de Entrega
                                         </label>
 
+
+                                        <div
+                                        className='mb-5'
+                                        >
+                                            <button
+                                                className="shadow appearance-none border rounded w-1/3 py-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-2xl"
+                                                onClick={() => setTiempoEntrega(20)}
+                                            >
+                                                20 minutos
+                                            </button>
+                                            <button
+                                                className="shadow appearance-none border rounded w-1/3 py-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-2xl"
+                                                onClick={() => setTiempoEntrega(40)}
+                                            >
+                                                40 minutos
+                                            </button>
+                                            <button
+                                                className="shadow appearance-none border rounded w-1/3 py-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-2xl"
+                                                onClick={() => setTiempoEntrega(60)}
+                                            >
+                                                60 minutos
+                                            </button>
+                                        </div>
+
                                         <input
                                             type="number"
-                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  "
+                                            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center text-5xl"
                                             min="1"
                                             placeholder="20"
                                             onChange={e => setTiempoEntrega(parseInt(e.target.value))}
+                                            value={tiempoEntrega}
                                         />
-
                                         <button
                                             onClick={() => definirTiempo(item.id)}
                                             type="submit"
-                                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-5 text-white uppercase font-bold text-2xl"
                                         >
                                             Definir Tiempo
                                         </button>
@@ -154,7 +181,7 @@ const Ordenes = () => {
                                         {item.completado === true && (
                                             <div>
                                                 <button
-                                                    onClick={()=> terminarOrden(item.id)}
+                                                    onClick={() => terminarOrden(item.id)}
                                                     className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
                                                 >
                                                     Orden entregada

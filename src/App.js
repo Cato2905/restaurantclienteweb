@@ -8,6 +8,8 @@ import firebase, { FirebaseContext } from './firebase/';
 import Ordenes from './components/paginas/Ordenes';
 import Menu from './components/paginas/Menu';
 import NuevoPlatillo from './components/paginas/NuevoPlatillo';
+import Historial from './components/paginas/Historial';
+import Ventas from './components/paginas/Ventas';
 import Sidebar from './components/ui/Sidebar';
 
 function App() {
@@ -24,7 +26,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Ordenes />  } />
                 <Route path="/menu" element={<Menu />  } />
-                <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />                <Route path="/menu" element={<Menu />  } />
+                <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />                
+                <Route path="/historial" element={<Historial />  } />
+                <Route path="/ventas" element={<Ventas />  } />
             </Routes>
           </div>
       </div>
