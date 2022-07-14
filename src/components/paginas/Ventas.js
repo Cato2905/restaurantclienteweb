@@ -7,8 +7,8 @@ const Ventas = () => {
     const { firebase } = useContext(FirebaseContext);
 
     const [promo, setPromo] = useState([]);
+    const [suma, setSuma] = useState(0);
 
-    
 
 
 
@@ -26,10 +26,18 @@ const Ventas = () => {
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
-
+    useEffect(() => {
+        var suma = 0
+        promo.forEach(element => {
+            // console.log(element.resultado)
+            suma = suma + element.TotalPedido
+        });
+        setSuma(suma)
+        // console.log(arrayCarrito)
+    }, [promo])
 
     const consoleA = () => {
-        console.log(promo)
+        console.log(suma)
     }
 
 
@@ -43,14 +51,14 @@ const Ventas = () => {
 
             >asd</button>
 
-
+            <h1 className='text-2xl mb-5'>  Su total de ventas es:  {suma}</h1>
 
 
             {
                 promo.map((item, index) => [
 
                     <div className="w-full px-3 mb-4 " key={index}>
-                        <div className="p-5 shadow-md bg-white ">
+                        <div className="p-5 sha0dow-md bg-white ">
                             <div className="lg:flex-auto ">
                                 <div className="lg:w-5/12 xl:w-3/12 ">
                                     <div className="sm:flex sm:-mx-2 pl-2 ">
