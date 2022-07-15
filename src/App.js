@@ -12,6 +12,11 @@ import Historial from './components/paginas/Historial';
 import Ventas from './components/paginas/Ventas';
 import Sidebar from './components/ui/Sidebar';
 
+
+
+
+
+
 function App() {
   return (
     <FirebaseContext.Provider

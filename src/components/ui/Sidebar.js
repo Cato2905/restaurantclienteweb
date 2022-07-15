@@ -18,7 +18,7 @@ const Sidebar = () => {
                         exact="true"
                         to="/"
                     >
-                        Ordenes       
+                        <BiAbacus/> Órdenes       
                     </NavLink>
                     <NavLink
                         className="p-2 text-3xl text-gray-200 block hover:bg-yellow-500 hover:text-gray-900"
@@ -36,7 +36,7 @@ const Sidebar = () => {
                         to="/historial"
                     >
                        
-                        Historial
+                       <i class="bi bi-clock-history"></i>Historial
                     </NavLink>
 
                     <NavLink

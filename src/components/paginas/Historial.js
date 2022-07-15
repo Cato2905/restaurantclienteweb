@@ -28,8 +28,7 @@ const Historial = () => {
 
 
     const eliminarSeleccion = () => {
-        firebase.db.collection('historial').doc().delete()
-        console.log("asd")
+        // firebase.db.collection('historial').delete()
     }
 
 
@@ -41,7 +40,7 @@ const Historial = () => {
                 onClick={() => eliminarSeleccion()}
                 className="bg-red-600  text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
             >
-                Orden entregada
+                Eliminar
             </button>
 
 
@@ -66,10 +65,13 @@ const Historial = () => {
                                             </p>
 
                                             <p className="text-gray-600 mb-4">Hora del pedido: {item.horaPedido} </p>
+                                            <p className="text-gray-600 mb-4">Hora del pedido: {item.indexDoc} </p>
 
                                             <p className="text-gray-600 mb-4">Direccion: {''}
                                                 <span className="text-gray-700 font-bold">{item.direccion}</span>
                                             </p>
+
+
                                         </div>
                                     </div>
                                 </div>
