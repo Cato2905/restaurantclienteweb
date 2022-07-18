@@ -8,7 +8,7 @@ const Ventas = () => {
 
     const [promo, setPromo] = useState([]);
     const [suma, setSuma] = useState(0);
-
+    const [todo, setTodo] = useState([])
 
 
 
@@ -25,6 +25,7 @@ const Ventas = () => {
         });
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
+    // consultar la base de datos al cargar
 
     useEffect(() => {
         var suma = 0
@@ -36,20 +37,16 @@ const Ventas = () => {
         // console.log(arrayCarrito)
     }, [promo])
 
-    const consoleA = () => {
-        console.log(suma)
+    const consoleA = (TotalPedido) => {
+        firebase.db.collection('ventasDiarias').doc(TotalPedido).delete()
     }
 
 
     return (
         <div>
 
-            <h1 className='text-3xl font-light mb4 mb-5'>Ventas diarias</h1>
-            <button
-                onClick={consoleA}
-                className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mb-4 text-2xl"
+            <h1 className='text-3xl font-light mb4 mb-5'>Ventas </h1>
 
-            >asd</button>
 
             <h1 className='text-2xl mb-5'>  Su total de ventas es:  {suma}</h1>
 
@@ -57,18 +54,24 @@ const Ventas = () => {
             {
                 promo.map((item, index) => [
 
+
+
                     <div className="w-full px-3 mb-4 " key={index}>
-                        <div className="p-5 sha0dow-md bg-white ">
+                        <div className="p-5 shadow-md bg-white ">
                             <div className="lg:flex-auto ">
                                 <div className="lg:w-5/12 xl:w-3/12 ">
                                     <div className="sm:flex sm:-mx-2 pl-2 ">
-                                        <label className="block mt-5 sm:w-2/4 ">
+                                        <label className="block mt-5 sm:w ">
                                             <p className="block text-gray-800 mb-2 font-bold  " >Venta n°: {item.indexDoc}</p>
                                         </label>
                                     </div>
                                 </div>
 
+                                {/* <button
+                                    onClick={() => consoleA(item.TotalPedido)}
+                                    className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mb-4 text-2xl"
 
+                                >asd</button> */}
 
                                 <label className="block mt-5 sm:w-2/4">
                                     <p className="block text-gray-800 mb-2 font-bold" >Total: {item.TotalPedido}</p>

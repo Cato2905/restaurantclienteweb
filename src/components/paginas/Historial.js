@@ -34,14 +34,14 @@ const Historial = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-light mb4 mb-5'>Historial de pedidos diarios</h1>
+            <h1 className='text-3xl font-light mb4 mb-5'>Historial de pedidos </h1>
 
-            <button
+            {/* <button
                 onClick={() => eliminarSeleccion()}
                 className="bg-red-600  text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
             >
                 Eliminar
-            </button>
+            </button> */}
 
 
             {
