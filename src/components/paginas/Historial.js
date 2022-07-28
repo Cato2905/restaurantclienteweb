@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FirebaseContext } from '../../firebase';
+import ReactExport from 'react-export-excel-xlsx-fix'
+import Swal from 'sweetalert2'
 
 const Historial = () => {
 
@@ -7,6 +9,15 @@ const Historial = () => {
 
     const [promo, setPromo] = useState([]);
     const { firebase } = useContext(FirebaseContext);
+
+
+
+    const ExcelFile = ReactExport.ExcelFile;
+    const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+    const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+
+
     // consultar la base de datos al cargar
     useEffect(() => {
 
@@ -27,8 +38,37 @@ const Historial = () => {
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const eliminarSeleccion = () => {
-        // firebase.db.collection('historial').delete()
+    const borrarCollecion = () => {
+        firebase.db.collection("historial").get().then(res => {
+            res.forEach(element => {
+                element.ref.delete();
+            });
+        })
+
+    }
+
+    const Exportar = () => {
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '¡Felicidades!',
+                    'Se elimino el historial.',
+                    'success'
+
+                )
+                borrarCollecion()
+            }
+        })
+
     }
 
 
@@ -44,6 +84,11 @@ const Historial = () => {
             </button> */}
 
 
+
+            <button
+                onClick={() => Exportar()}
+                className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mb-4 text-2xl"
+            >Borrar historial</button>
             {
                 promo.map((item, index) => [
 
