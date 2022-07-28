@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FirebaseContext } from '../../firebase';
+import ReactExport from "react-export-excel";
 
 
 const Ventas = () => {
@@ -11,6 +12,14 @@ const Ventas = () => {
     const [todo, setTodo] = useState([])
 
 
+
+
+
+
+
+
+
+    
 
     // consultar la base de datos al cargar
     useEffect(() => {
@@ -24,8 +33,6 @@ const Ventas = () => {
 
         });
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
-
-    // consultar la base de datos al cargar
 
     useEffect(() => {
         var suma = 0

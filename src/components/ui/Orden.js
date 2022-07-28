@@ -35,7 +35,14 @@ const Orden = ({ orden }) => {
         }
     }
 
-    return ( 
+
+    useEffect(() => {
+        document.title = "Ordenes"
+    }, []);
+
+
+    
+    return (
         <div className="sm:w-1/2 lg:w-1/3 px-2 mb-4">
             <div className="p-3 shadow-md bg-white">
 
@@ -52,11 +59,11 @@ const Orden = ({ orden }) => {
                             max="20"
                             placeholder="20"
                             value={tiempoentrega}
-                            onChange={ e => guardarTiempoEntrega( parseInt(e.target.value) ) }
+                            onChange={e => guardarTiempoEntrega(parseInt(e.target.value))}
                         />
 
                         <button
-                            onClick={ () => definirTiempo(orden.id) }
+                            onClick={() => definirTiempo(orden.id)}
                             type="submit"
                             className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
                         >
@@ -71,18 +78,18 @@ const Orden = ({ orden }) => {
                     </p>
                 )}
 
-                { !orden.completado && orden.tiempoentrega > 0 && (
-                   <button
-                    type="button"
-                    className="bg-blue-800 hover:bg-blue-700 w-full mt-5 p-2 text-white uppercase font-bold"
-                    onClick={ () => completarOrden( orden.id )}
-                   >
-                       Marcar como lista
-                   </button>
-                ) }
+                {!orden.completado && orden.tiempoentrega > 0 && (
+                    <button
+                        type="button"
+                        className="bg-blue-800 hover:bg-blue-700 w-full mt-5 p-2 text-white uppercase font-bold"
+                        onClick={() => completarOrden(orden.id)}
+                    >
+                        Marcar como lista
+                    </button>
+                )}
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Orden;
