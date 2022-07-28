@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FirebaseContext } from '../../firebase';
+import Swal from 'sweetalert2'
 
 const Orden = ({ orden }) => {
 

@@ -59,6 +59,17 @@ const Platillo = ({ platillo }) => {
 
     }
 
+    const confirmarAlerata = () => {
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Disponibilidad actualizada',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(actualizarDisponibilidadFalse)
+
+    }
 
 
 
@@ -97,7 +108,7 @@ const Platillo = ({ platillo }) => {
 
                         <div className="sm:flex sm:-mx-2 pl-2">
                             <label className="block mt-5 sm:w-2/4">
-                                <span className="block text-gray-800 mb-2 text-center" >Existencia</span>
+                                <span className="block text-gray-800 mb-2 text-center font-bold text-2xl" >Disponibilidad</span>
 
                                 <select
                                     className="bg-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-2xl "
@@ -111,7 +122,7 @@ const Platillo = ({ platillo }) => {
 
 
                                 <button
-                                    onClick={actualizarDisponibilidadFalse}
+                                    onClick={confirmarAlerata}
                                     className="bg-green-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline my-5 text-3xl"
 
                                 >CAMBIAR EXISTENCIA </button>
@@ -122,6 +133,9 @@ const Platillo = ({ platillo }) => {
                                     className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mb-4 text-2xl"
 
                                 >Eliminar</button>
+
+
+
 
 
 

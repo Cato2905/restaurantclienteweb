@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FirebaseContext } from '../../firebase';
+import Swal from 'sweetalert2'
 
 const Ordenes = () => {
 
@@ -33,6 +34,48 @@ const Ordenes = () => {
         firebase.db.collection('ordenes').doc(id).delete()
 
     }
+
+
+    const completarOrdenAlerata = (id) => {
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Orden completada',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(completarOrden(id))
+
+    }
+
+    const terminarOrdenAlerta = (id) => {
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Orden entregada!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '¡Felicidades!',
+                    'La orden a finalizado.',
+                    'success'
+
+                )
+                terminarOrden(id)
+            }
+        })
+
+    }
+
+
+
+
+
 
 
     // consultar la base de datos al cargar
@@ -128,7 +171,7 @@ const Ordenes = () => {
 
 
                                         <div
-                                        className='mb-5'
+                                            className='mb-5'
                                         >
                                             <button
                                                 className="shadow appearance-none border rounded w-1/3 py-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-2xl"
@@ -173,7 +216,7 @@ const Ordenes = () => {
                                             <span className="font-bold"> {item.tiempoEntrega} Minutos</span>
                                         </p>
                                         <button
-                                            onClick={() => completarOrden(item.id)}
+                                            onClick={() => completarOrdenAlerata(item.id)}
                                             className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
                                         >
                                             completado
@@ -181,7 +224,7 @@ const Ordenes = () => {
                                         {item.completado === true && (
                                             <div>
                                                 <button
-                                                    onClick={() => terminarOrden(item.id)}
+                                                    onClick={() => terminarOrdenAlerta(item.id)}
                                                     className="bg-red-600 text-white shadow appearance-none border rounded w-auto py-2 px-3 leading-tight focus:outline-none focus:shadow-outline mt-3 mb-4"
                                                 >
                                                     Orden entregada
